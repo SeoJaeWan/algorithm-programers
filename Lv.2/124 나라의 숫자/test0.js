@@ -1,11 +1,5 @@
 let n = 10;
 
-function deepF(num, deep) {
-  if (num == 0) return deep;
-
-  deepF(parseInt(num / 3), deep + 1);
-}
-
 function solution(n) {
   let answer = "0";
   let Lang = ["1", "2", "4"];
