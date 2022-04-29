@@ -26,45 +26,14 @@ function solution(lines) {
     const startDate = endDate - seconds + 1;
 
     const endDate2 = get_millisconds(date2);
-    console.log(date2.getMilliseconds() - seconds + 1);
+    console.log(date2);
     date2.setMilliseconds(date2.getMilliseconds() - seconds + 1);
     const startDate2 = get_millisconds(date2);
+    console.log(date2);
 
     console.log(endDate2, seconds, startDate2);
 
     array.push([startDate, endDate]);
-  }
-
-  for (let i = 0; i < array.length; i++) {
-    let count_s = 0;
-    let count_e = 0;
-
-    const checkDate_s = array[i][0];
-    const checkDate2_s = checkDate_s + 999;
-
-    const checkDate_e = array[i][1];
-    const checkDate2_e = checkDate_e + 999;
-
-    for (let j = 0; j < array.length; j++) {
-      const current_s = array[j][0];
-      const current_e = array[j][1];
-
-      if (
-        (checkDate_s <= current_s && current_s <= checkDate2_s) ||
-        (checkDate_s <= current_e && current_e <= checkDate2_s) ||
-        (current_s <= checkDate_s && checkDate_s <= current_e)
-      ) {
-        count_s++;
-      }
-      if (
-        (checkDate_e <= current_s && current_s <= checkDate2_e) ||
-        (checkDate_e <= current_e && current_e <= checkDate2_e) ||
-        (current_s <= checkDate_e && checkDate_e <= current_e)
-      ) {
-        count_e++;
-      }
-    }
-    answer = Math.max(Math.max(count_s, count_e), answer);
   }
 
   return answer;
