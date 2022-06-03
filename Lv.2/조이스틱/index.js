@@ -1,4 +1,4 @@
-let name = "BBAAABAAAAAAAAAAAABA";
+let name = "AACAAB";
 
 let eng = [
   "A",
@@ -29,24 +29,12 @@ let eng = [
   "Z",
 ];
 
-function upStick(goal) {
+function changeStick(goal) {
   let current = 1;
   while (true) {
     if (eng[current] === goal) {
       return current;
     }
-    current++;
-  }
-}
-
-function downStick(goal) {
-  let current = 1;
-
-  while (true) {
-    if (eng[eng.length - current] === goal) {
-      return current;
-    }
-
     current++;
   }
 }
@@ -75,31 +63,42 @@ function moveStick(current, name) {
     left++;
   }
 
-  return [right + current - 1, Math.min(left, right)];
+  return [
+    right + current - 1,
+    name[right + current] !== "A" ? Math.min(left, right) : 0,
+  ];
 }
 
 function solution(name) {
   var answer = 0;
+  let count = 0;
 
   for (let i = 0; i < name.length; i++) {
     let GOAL = name[i];
 
     if (GOAL !== "A") {
-      let up = upStick(GOAL);
+      let up = changeStick(GOAL);
 
-      let down = downStick(GOAL);
+      // console.log(Math.min(up, eng.length - up));
 
-      answer += Math.min(up, down);
+      answer += Math.min(up, eng.length - up);
     }
 
     let move = moveStick(i, name);
-    console.log(answer, move);
 
+    count += move[1];
     i = move[0];
     answer += move[1];
   }
 
+  console.log(count);
+
   return answer;
 }
-
-console.log(solution(name));
+// RABAMATAWADLAFAVAAE
+// 9 2 1 2 12 2 7 2 4 2 3 1 11 2 5 2 5 3 4
+// LOAAAHAJAAFAEBAWO
+// 1 4 2 3 2 1 2 1
+// move가 2가 더 많음
+// 5 7 10 12 13 15 16
+console.log(solution(name), "???");
